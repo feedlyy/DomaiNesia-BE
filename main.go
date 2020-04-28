@@ -13,6 +13,7 @@ var Dvds = []app.Dvd{}
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+
 	if r.Method == "GET" {
 		_ = json.NewEncoder(w).Encode(Dvds)
 	} else {
@@ -52,6 +53,43 @@ func Show(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(405)
 		_ = json.NewEncoder(w).Encode("Method Not Allowed")
 	}
+}
+
+func Create(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	//get client/user input
+	title := r.FormValue("title")
+	price, _ := strconv.Atoi(r.FormValue("price"))       //convert input from string to int
+	quantity, _ := strconv.Atoi(r.FormValue("quantity")) //convert input from string to int
+	category := r.FormValue("category")
+
+	//getLastId from slice
+	lastId := Dvds[len(Dvds)-1].Id
+
+	//slice to display in response
+	slice := app.Dvd{
+		Id:       lastId + 1, // always increment from the last id in slice Dvd's
+		Title:    title,
+		Price:    price,
+		Quantity: quantity,
+		Category: category,
+	}
+
+	//added to array dvd
+	Dvds = append(Dvds, slice)
+
+	if r.Method == "POST" {
+		_ = json.NewEncoder(w).Encode(slice)
+	} else {
+		w.WriteHeader(405)
+		_ = json.NewEncoder(w).Encode("Method Not Allowed")
+	}
+}
+
+func Update(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
 }
 
 func main() {
@@ -94,6 +132,8 @@ func main() {
 
 	http.HandleFunc("/dvds", Index)
 	http.HandleFunc("/dvd", Show)
+	http.HandleFunc("/create", Create)
+	http.HandleFunc("/update", Update)
 
 	//serve a server
 	_ = http.ListenAndServe(":8000", nil)
