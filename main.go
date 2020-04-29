@@ -140,6 +140,40 @@ func Update(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func Delete(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	//get params
+	Ids, _ := r.URL.Query()["id"]
+	Id := Ids[0]                 //get only in first array
+	getId, _ := strconv.Atoi(Id) //convert to int
+
+	//get deleted item first
+	items := []app.Dvd{}
+
+	for i := 0; i < len(Dvds); i++ {
+		if Dvds[i].Id == getId {
+			items = append(items, Dvds[i])
+			Dvds = append(Dvds[:i], Dvds[i+1:]...) //delete the item
+			break
+		} else {
+			items = nil
+		}
+	}
+
+	if r.Method == "DELETE" {
+		if items == nil {
+			w.WriteHeader(404)
+			_ = json.NewEncoder(w).Encode("Wrong ID")
+		} else {
+			_ = json.NewEncoder(w).Encode("Success delete item")
+		}
+	} else {
+		w.WriteHeader(405)
+		_ = json.NewEncoder(w).Encode("Method Not Allowed")
+	}
+}
+
 func main() {
 	//dummy data for dvd
 	Dvds = append(Dvds, app.Dvd{
@@ -183,6 +217,7 @@ func main() {
 	http.HandleFunc("/show", Show)
 	http.HandleFunc("/create", Create)
 	http.HandleFunc("/update", Update)
+	http.HandleFunc("/delete", Delete)
 
 	//serve a server
 	_ = http.ListenAndServe(":8000", nil)
