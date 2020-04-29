@@ -1,4 +1,4 @@
-# Pre-Requisites
+# Prerequisites
 
 ##### 1. Install Go or Xampp if you didn't have one
 
