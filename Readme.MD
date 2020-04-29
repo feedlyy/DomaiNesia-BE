@@ -33,3 +33,6 @@ C:\Users\Blank\go\src\DomaiNesia-BE>go build && DomaiNesia-BE (your project fold
 example:
 http://localhost/Quest-2.php
 ```
+
+### Question number 3 and 4
+The answer is in the folder Quest-3_and_Quest-4
