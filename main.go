@@ -1,7 +1,7 @@
 package main
 
 import (
-	"DomaiNesia-Pretest/app"
+	"DomaiNesia-BE/app"
 	"encoding/json"
 	"net/http"
 	"strconv"
