@@ -1,0 +1,17 @@
+3. Plain PHP to Symphony Framework
+- What things should we consider before migration?
+1. Migrating Databases
+2. Data querying
+3. Time estimation for learning new Framework
+4. Resources (Programmer)
+5. Authentication
+6. MVC concept, a lot of frameworks using the MVC concept
+- How do we do plan the transition?
+Because I have never been doing the transition, in my opinion, this will be my plan before the transition:
+1. Make sure time estimation for the transition, this very important because migration to framework needs a lot of considerations
+2. Resources/programmer that we had, if we had a programmer that already know or have been using the framework it makes the transition easier
+3. Database migration, we must make sure the framework we choose support the previous database that we using
+That's my plan before doing the transition.
+
+4. why do you choose to become a backend developer? What parts make you passionate? 
+I choose to become a backend developer because I'm weak at design. Solving a problem it's way more challenging than design something. I'm maybe not a fast learner, but when I came up with a problem and I know how to do it but it ain't solve yet it makes me more excited.
