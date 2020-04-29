@@ -179,8 +179,8 @@ func main() {
 	})
 
 	//list of routes
-	http.HandleFunc("/dvds", Index)
-	http.HandleFunc("/dvd", Show)
+	http.HandleFunc("/index", Index)
+	http.HandleFunc("/show", Show)
 	http.HandleFunc("/create", Create)
 	http.HandleFunc("/update", Update)
 
