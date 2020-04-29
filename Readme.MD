@@ -9,7 +9,7 @@ https://sourceforge.net/projects/xampp/
 ##### 2. Clone the repository
 
 ```bash
-git clone https://github.com/feedlyy/Pretest-OCA.git
+git clone https://github.com/feedlyy/DomaiNesia-BE.git
 ```
 
 ## HOW TO USE
@@ -21,7 +21,7 @@ git clone https://github.com/feedlyy/Pretest-OCA.git
 ##### 3. Build and run project
 ```bash
 example:
-C:\Users\Blank\go\src\DomaiNesia-Pretest>go build && DomaiNesia-Pretest (your project folder)
+C:\Users\Blank\go\src\DomaiNesia-Pretest>go build && DomaiNesia-BE (your project folder)
 ```
 ##### 4. All of route and function are listed in main.go
 
