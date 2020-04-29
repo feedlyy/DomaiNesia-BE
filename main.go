@@ -45,7 +45,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		if items == nil {
 			w.WriteHeader(404)
-			_ = json.NewEncoder(w).Encode("The item is empty")
+			_ = json.NewEncoder(w).Encode("Wrong ID")
 		} else {
 			_ = json.NewEncoder(w).Encode(items)
 		}
@@ -90,6 +90,54 @@ func Create(w http.ResponseWriter, r *http.Request) {
 func Update(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
+	//get items
+	items := []app.Dvd{}
+
+	//get params
+	Ids, _ := r.URL.Query()["id"]
+	Id := Ids[0]                 //get only in first array
+	getId, _ := strconv.Atoi(Id) //convert to int
+
+	//get client/user input
+	title := r.FormValue("title")
+	price := r.FormValue("price")       //convert input from string to int
+	quantity := r.FormValue("quantity") //convert input from string to int
+	category := r.FormValue("category")
+
+	for i := 0; i < len(Dvds); i++ {
+		if Dvds[i].Id == getId {
+			if title != "" {
+				Dvds[i].Title = title
+			}
+			if price != "" {
+				getPriceUpdate, _ := strconv.Atoi(r.FormValue("price"))
+				Dvds[i].Price = getPriceUpdate
+			}
+			if quantity != "" {
+				getQuantityUpdate, _ := strconv.Atoi(r.FormValue("quantity"))
+				Dvds[i].Quantity = getQuantityUpdate
+			}
+			if category != "" {
+				Dvds[i].Category = category
+			}
+			items = append(items, Dvds[i])
+			break
+		} else {
+			items = nil
+		}
+	}
+
+	if r.Method == "PUT" {
+		if items == nil {
+			w.WriteHeader(404)
+			_ = json.NewEncoder(w).Encode("Wrong ID")
+		} else {
+			_ = json.NewEncoder(w).Encode(items)
+		}
+	} else {
+		w.WriteHeader(405)
+		_ = json.NewEncoder(w).Encode("Method Not Allowed")
+	}
 }
 
 func main() {
@@ -130,6 +178,7 @@ func main() {
 		Category: "comedy",
 	})
 
+	//list of routes
 	http.HandleFunc("/dvds", Index)
 	http.HandleFunc("/dvd", Show)
 	http.HandleFunc("/create", Create)
