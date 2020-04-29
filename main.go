@@ -213,6 +213,9 @@ func main() {
 	})
 
 	//list of routes
+	/*please take a note for show,update,delete
+	they need params in their url, so please do this when using one of them
+	example: localhost:8000/show?id=1*/
 	http.HandleFunc("/index", Index)
 	http.HandleFunc("/show", Show)
 	http.HandleFunc("/create", Create)
