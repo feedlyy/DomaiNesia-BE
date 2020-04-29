@@ -21,7 +21,7 @@ git clone https://github.com/feedlyy/DomaiNesia-BE.git
 ##### 3. Build and run project
 ```bash
 example:
-C:\Users\Blank\go\src\DomaiNesia-Pretest>go build && DomaiNesia-BE (your project folder)
+C:\Users\Blank\go\src\DomaiNesia-BE>go build && DomaiNesia-BE (your project folder)
 ```
 ##### 4. All of route and function are listed in main.go
 
